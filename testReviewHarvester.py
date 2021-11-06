@@ -6,6 +6,7 @@ gather information to add to database such as game name, etc.'''
 
 import requests    #https://docs.python-requests.org/en/latest/ for API requests with py
 import pandas as pd
+import re 
 
 
 #def get_AppId(url):
@@ -15,7 +16,9 @@ def ReviewHarvester(): #Here we should have URL as our input.
     
     
     '''We need to pull our appid from the url to input into the requests.get with a format method call?''' 
-    
+    url='https://store.steampowered.com/appreviews/1635590'
+    GameID =(url.split('/')[-1])
+    print(GameID)
     #print(url)
     return(requests.get('https://store.steampowered.com/appreviews/1635590?json=1').json())
     #review_df = pd.read_json(requests.get('https://store.steampowered.com/appreviews/1635590?json=1').json())
