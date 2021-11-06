@@ -1,32 +1,38 @@
 '''This is the main processor core for our GRSA1.0 software.'''
-
-#UI URL request input should be input as string.
+'''The entire program should be run by calling this.py'''
 
 import testReviewHarvester as tRH
 import SentimentAnalyzer as SA
 import pandas as pd
 
+#Can I add grab a game image with the scraper also?
 
-Analysis = SA()
+url= input("Add your Steam URL here:")
+#UI request should be input as this string.
+GameName = (url.split('/')[-2])
+GameID = (url.split('/')[-3])
+#Check the Database for GameID or GameName Here
+print(GameID, GameName)
+
+#If the GameID is not found in database, then run Analysis().
+
+def Analysis():
+    Analysis = SA()
 print(Analysis)
+#export Analysis() to database:URL/GameID.
 
- #   review_df = pd.read_json(GetReviews())
-#print(head.review_df(2))
-#review_df.head(2)
-
-#review_json = pd.read_json(review_json.json)
-#review_json.to_excel(DATAFILE.xlsx) #attempt to convert .json to .xlsx file.
-'''We converted our .json file to an xlsx file for an easier to work with '''
-
-#Out put review harvester to dataframe pd.read_json(Review Output)
-
-#Using dataframe as input and output, run SA and measure results.
+#Translate SA results.
 #clean SA results.
-#Save into the game's DB object and input into Game DB based on the URL.
 
-#Output top/bottom reviews or 'sentiments'? Could use a word cloud or list?
-#pass json data into dataframe? so URL key, then json data? 
-#Graph of review data?
-#Send Output to UI.
+'''UI Output:
+
+Flask?: https://realpython.com/python-web-applications/#choose-a-hosting-provider-google-app-engine
+or: https://blog.pythonanywhere.com/169/
+Project Directory: https://flask.palletsprojects.com/en/2.0.x/tutorial/layout/
+
+Output top/bottom reviews or 'sentiments'? Could use a word cloud or list?
+#Patrick working on PowerBI Dashboard output?
+#graphical output via matplotlib?
+#Send Output to UI.''' 
 
 
