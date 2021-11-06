@@ -18,9 +18,11 @@ review_df = pd.read_json(tRH.ReviewHarvester())
 
 #Using dataframe as input and output, run SA and measure results.
 #clean SA results.
-#Create DB object and input into Game DB based on the URL.
+#Save into the game's DB object and input into Game DB based on the URL.
+
 #Output top/bottom reviews or 'sentiments'? Could use a word cloud or list?
 #pass json data into dataframe? so URL key, then json data? 
 #Graph of review data?
 #Send Output to UI.
+
 
