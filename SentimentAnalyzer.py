@@ -10,9 +10,16 @@ import nltk
 import nltk.data
 import xlsxwriter
 import pandas as pd
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-dataset=pd.read_excel('SentimentReviews.xlsx')
-sid=SentimentIntensityAnalyzer()
+import testReviewHarvester as tRH
+
+
+Reviews = tRH.ReviewHarvester()
+
+from nltk.sentiment.vader import SentimentIntensityAnalyzer as sid
+
+dataset=pd.read_json(Reviews)
+#dataset=pd.read_excel('SentimentReviews.xlsx')
+#sid=SentimentIntensityAnalyzer()
 dataset['polarity scores'] =dataset['Reviews'].apply(lambda x: sid.polarity_scores(x)['compound']) 
 print (dataset)
 

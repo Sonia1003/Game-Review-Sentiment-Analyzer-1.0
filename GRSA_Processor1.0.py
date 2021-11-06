@@ -2,13 +2,17 @@
 
 #UI URL request input should be input as string.
 
-#Module that pulls app ID from url input and passes it to review harvester
-#Call Review harvester
 import testReviewHarvester as tRH
+import SentimentAnalyzer as SA
 import pandas as pd
 
 
-review_df = pd.read_json(tRH.ReviewHarvester())
+Analysis = SA()
+print(Analysis)
+
+ #   review_df = pd.read_json(GetReviews())
+#print(head.review_df(2))
+#review_df.head(2)
 
 #review_json = pd.read_json(review_json.json)
 #review_json.to_excel(DATAFILE.xlsx) #attempt to convert .json to .xlsx file.
