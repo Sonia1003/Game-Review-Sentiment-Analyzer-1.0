@@ -6,10 +6,6 @@ gather information to add to database such as game name, etc.'''
 
 import requests    #https://docs.python-requests.org/en/latest/ for API requests with py
 import pandas as pd
-import json
-import io
-import sys
-sys.stdout.encoding
 
 #Can I add an image scraper to this?
 url= input("Add your Steam URL here:")
