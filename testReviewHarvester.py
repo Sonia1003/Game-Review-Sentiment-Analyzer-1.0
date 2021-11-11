@@ -23,31 +23,27 @@ def ReviewHarvester():
     '''https://store.steampowered.com/appreviews/<AppId>?json=1 <-- API URL
     https://partner.steamgames.com/doc/store/getreviews <-- Steam API Documentation'''
     
-    payload = {'language': 'english'}
-    r = requests.get(url=f'https://store.steampowered.com/appreviews/{GameID}?json=1', params=payload)
+  
+    response = requests.get(url=f'https://store.steampowered.com/appreviews/{GameID}?json=1')
     
     '''Return an error code if request unsuccessful'''
-    if r.status_code != 200: 
+    if response.status_code != 200: 
         print('Status:', response.status_code, 'Problem with the request. Exiting.')
+        exit()
     
-    print(type(r))
+    '''Pulling only the reviews and reviewIDs from the information'''
+    data = response.json()
+    reviews = []
+    reviewIDs = []
     
-
-    data=r.json()
-    print(type(data))
-    del data['success']
-    del data['query_summary']
-    del data['cursor']
-    #del data['recommendationid']
-    #del data['author']
-    #del data['language']
-    #del data['timestamp_created']
-    print(data)
-
-    reviews = pd.DataFrame.from_dict(data)
-    print(reviews.head(3))
-    print(type(reviews))
-    
-    
+    field_list = data['reviews']
+    for fields in field_list:
+        review = (fields['review'])
+        reviews.append(review)
+        reviewID = (fields['recommendationid'])
+        reviewIDs.append(reviewID)
+    df = pd.DataFrame({'IDs': reviewIDs, 'Reviews': reviews})
+    #print(df.head(3))
+    return(df)
+        
 ReviewHarvester()
-

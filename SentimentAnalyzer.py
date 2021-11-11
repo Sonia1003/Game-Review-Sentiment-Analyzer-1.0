@@ -14,12 +14,13 @@ import testReviewHarvester as tRH
 
 
 Reviews = tRH.ReviewHarvester()
+print(Reviews)
 
-from nltk.sentiment.vader import SentimentIntensityAnalyzer as sid
+#from nltk.sentiment.vader import SentimentIntensityAnalyzer as sid
 
-dataset=pd.read_json(Reviews)
+# dataset=pd.read_json(Reviews)
 #dataset=pd.read_excel('SentimentReviews.xlsx')
 #sid=SentimentIntensityAnalyzer()
-dataset['polarity scores'] =dataset['Reviews'].apply(lambda x: sid.polarity_scores(x)['compound']) 
-print (dataset)
+#dataset['polarity scores'] =dataset['Reviews'].apply(lambda x: sid.polarity_scores(x)['compound']) 
+#print (dataset)
 
