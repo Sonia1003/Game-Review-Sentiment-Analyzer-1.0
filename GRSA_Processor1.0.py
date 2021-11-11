@@ -20,6 +20,7 @@ def Analysis():
     Analysis = SA()
 print(Analysis)
 #export Analysis() to database:URL/GameID.
+GRSA_Processor1.0()
 
 #Translate SA results.
 #clean SA results.

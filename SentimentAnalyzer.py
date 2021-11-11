@@ -8,19 +8,15 @@ Weblogs and Social Media (ICWSM-14). Ann Arbor, MI, June 2014.
 """
 import nltk
 import nltk.data
-import xlsxwriter
 import pandas as pd
 import testReviewHarvester as tRH
-
+from nltk.sentiment.vader import SentimentIntensityAnalyzer as sid
 
 Reviews = tRH.ReviewHarvester()
 print(Reviews)
 
-#from nltk.sentiment.vader import SentimentIntensityAnalyzer as sid
+dataset = Reviews
 
-# dataset=pd.read_json(Reviews)
-#dataset=pd.read_excel('SentimentReviews.xlsx')
-#sid=SentimentIntensityAnalyzer()
-#dataset['polarity scores'] =dataset['Reviews'].apply(lambda x: sid.polarity_scores(x)['compound']) 
-#print (dataset)
+dataset['polarity scores'] = dataset['Reviews'].apply(lambda x: sid.polarity_scores(x)['compound']) 
+print (dataset)
 
