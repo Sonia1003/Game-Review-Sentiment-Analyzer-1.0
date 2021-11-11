@@ -7,6 +7,9 @@ gather information to add to database such as game name, etc.'''
 import requests    #https://docs.python-requests.org/en/latest/ for API requests with py
 import pandas as pd
 import json
+import io
+import sys
+sys.stdout.encoding
 
 #Can I add an image scraper to this?
 url= input("Add your Steam URL here:")
@@ -19,7 +22,32 @@ def ReviewHarvester():
     
     '''https://store.steampowered.com/appreviews/<AppId>?json=1 <-- API URL
     https://partner.steamgames.com/doc/store/getreviews <-- Steam API Documentation'''
-    return(requests.get(url=f'https://store.steampowered.com/appreviews/{GameID}?json=1').json())
+    
+    payload = {'language': 'english'}
+    r = requests.get(url=f'https://store.steampowered.com/appreviews/{GameID}?json=1', params=payload)
+    
+    '''Return an error code if request unsuccessful'''
+    if r.status_code != 200: 
+        print('Status:', response.status_code, 'Problem with the request. Exiting.')
+    
+    print(type(r))
+    
 
-print(ReviewHarvester()) 
- 
+    data=r.json()
+    print(type(data))
+    del data['success']
+    del data['query_summary']
+    del data['cursor']
+    #del data['recommendationid']
+    #del data['author']
+    #del data['language']
+    #del data['timestamp_created']
+    print(data)
+
+    reviews = pd.DataFrame.from_dict(data)
+    print(reviews.head(3))
+    print(type(reviews))
+    
+    
+ReviewHarvester()
+
