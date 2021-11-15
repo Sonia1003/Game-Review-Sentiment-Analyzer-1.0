@@ -10,13 +10,21 @@ import nltk
 import nltk.data
 import pandas as pd
 import testReviewHarvester as tRH
-from nltk.sentiment.vader import SentimentIntensityAnalyzer as sid
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-Reviews = tRH.ReviewHarvester()
-print(Reviews)
+def SA():
+    sia = SentimentIntensityAnalyzer()
+    df1 = tRH.ReviewHarvester()
+    #print(df1['Reviews'])
 
-dataset = Reviews
+    #data['Reviews'] = data['Reviews'].astype(str)
+    df2 = df1['Reviews']
 
-dataset['polarity scores'] = dataset['Reviews'].apply(lambda x: sid.polarity_scores(x)['compound']) 
-print (dataset)
 
+    df1['Compound'] = [sia.polarity_scores(x)['compound'] for x in df2]
+    df1['Why0neg'] = [sia.polarity_scores(x)['neg'] for x in df2]
+    df1['Why0neu'] = [sia.polarity_scores(x)['neu'] for x in df2]
+    df1['Why0pos'] = [sia.polarity_scores(x)['pos'] for x in df2]
+    print(df1)
+    return(df1)
+SA()

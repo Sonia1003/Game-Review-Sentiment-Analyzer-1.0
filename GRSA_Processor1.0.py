@@ -2,7 +2,7 @@
 '''The entire program should be run by calling this.py'''
 
 import testReviewHarvester as tRH
-import SentimentAnalyzer as SA
+import SentimentAnalyzer as SAn
 import pandas as pd
 
 #Can I add grab a game image with the scraper also?
@@ -17,10 +17,11 @@ print(GameID, GameName)
 #If the GameID is not found in database, then run Analysis().
 
 def Analysis():
-    Analysis = SA()
-print(Analysis)
+    Analysis = SAn.SA()
+    print(df1)
+Analysis()
 #export Analysis() to database:URL/GameID.
-GRSA_Processor1.0()
+
 
 #Translate SA results.
 #clean SA results.

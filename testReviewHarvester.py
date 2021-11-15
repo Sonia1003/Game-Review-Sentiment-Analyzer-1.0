@@ -39,7 +39,6 @@ def ReviewHarvester():
         reviewID = (fields['recommendationid'])
         reviewIDs.append(reviewID)
     df = pd.DataFrame({'IDs': reviewIDs, 'Reviews': reviews})
-    #print(df.head(3))
     return(df)
         
 ReviewHarvester()
